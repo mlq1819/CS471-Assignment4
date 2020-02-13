@@ -127,7 +127,7 @@ isBinaryTree(tree(L,R)):-
 /* Problem 0C Answer: */
 
 computeS(Op, Arg1, Arg2, Result):-
-	Result =.. [Op,Arg1,Arg2].
+	R =.. [Op,Arg1,Arg2], Result is R.
 
 /* Problem 0C Test: */
 :- computeS(-, 19, 7, 12).
