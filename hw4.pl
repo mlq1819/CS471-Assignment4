@@ -197,12 +197,16 @@ prove([H|T]):-
 
 /* Problem 2 Answer: */
 
-/* Problem 2 Test */
-% :- result([],[]).
-% :- result([+(3,7), mod(104,7),-(5)],[10, 6, -5]).
-% :- result([+(3,7), +(15, -(3,11))],X), X = [10, 7].
+results([],_).
+results([Eh|Et],Rlst):-
+	Rlst is Eh, results(Et,Rlst).
 
-% :- result([+(3,7), mod(104,7)],[10,13]) -> fail ; true.
+/* Problem 2 Test */
+:- result([],[]).
+:- result([+(3,7), mod(104,7),-(5)],[10, 6, -5]).
+:- result([+(3,7), +(15, -(3,11))],X), X = [10, 7].
+
+:- result([+(3,7), mod(104,7)],[10,13]) -> fail ; true.
 
 /* Problem 3:
    Write a predicate sumlist(List,Sum) which succeeds if Sum is the total value
