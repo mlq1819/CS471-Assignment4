@@ -174,13 +174,16 @@ graphical tracer".
       names is the entire list. 
 */
 
+prove([]).
+prove([H|T]):-
+	H, prove(T).
 
 /* Problem 1 Test */
 
-%:- prove([=(A,5),is(B,+(4,5)),C is max(5,2),A=C]) , A = 5, B = 9, C = 5. %succeeds
-%:- prove([member(A,[1,4,5,7]),is(A, max(5,2))]). %succeeds
-%:- prove([is(A,+(3,2)),is(B,+(4,5)),C is max(5,2),A=C]).  %fails
-%:- prove([=(A,5),is(B,+(1,2)),B is max(9,A)]). %fails
+:- prove([=(A,5),is(B,+(4,5)),C is max(5,2),A=C]) , A = 5, B = 9, C = 5. %succeeds
+:- prove([member(A,[1,4,5,7]),is(A, max(5,2))]). %succeeds
+:- prove([is(A,+(3,2)),is(B,+(4,5)),C is max(5,2),A=C]).  %fails
+:- prove([=(A,5),is(B,+(1,2)),B is max(9,A)]). %fails
 
 /* Problem 1 Answer */
 
