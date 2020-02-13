@@ -198,8 +198,8 @@ prove([H|T]):-
 /* Problem 2 Answer: */
 
 results([],_).
-results([Eh|Et],Rlst):-
-	Rlst is Eh, results(Et,Rlst).
+results([Eh|Et],[Rh|Rt]):-
+	Rh is Eh, results(Et,Rt).
 
 /* Problem 2 Test */
 :- result([],[]).
