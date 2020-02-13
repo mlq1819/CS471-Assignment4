@@ -220,15 +220,17 @@ result([Eh|Et],[Rh|Rt]):-
 /* Problem 3 Answer */
 
 sumlist([], 0).
+sumlist([Lh|Lt],Sum):-
+	sumlist(Lt,Sn), Sum is Lh+Sn.
 
 /* Problem 3 Test */
 /* There should be no warnings when compiling,
    tests which are supposed to fail are written as such */
 
-% :- sumlist([], 0).
-% :- sumlist([], 1) -> fail ; true.
-% :- sumlist([1,2,3,4], 10).
-% :- sumlist([1], 1).
+:- sumlist([], 0).
+:- sumlist([], 1) -> fail ; true.
+:- sumlist([1,2,3,4], 10).
+:- sumlist([1], 1).
 
 /* Problem 4:
    Write the predicate sumlist2(List,Sum) which succeeds if Sum is the sum total
