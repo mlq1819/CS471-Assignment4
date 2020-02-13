@@ -101,21 +101,21 @@ isBinaryTree(tree(L,R)):-
    problems.
    (This will be useful in solving problem 3).
 
-?- number(A), A = 5.6.
-?- A = 5.6, number(A).
-?- integer(4).
-?- help(functor).
-?- functor(foo(a,b,c),F,N).
-?- functor(T,foo,3).
-?- help(arg).
-?- arg(3, foo(a,b,c),A).
-?- help('=..').
-?- T =.. [foo,x, y, z].
-?- E =.. ['+',2,3], R is E.
-?- foo(who, what) =.. T.
-?- foo(who, what) =.. [A, B,C].
-?- clause(ack(M,0,B),C).
-?- clause(H,(B is 2*0)).
+?- number(A), A = 5.6. %false? false!
+?- A = 5.6, number(A). %true? A=5.6!
+?- integer(4). %true? true!
+?- help(functor). %... a bunch of stuff
+?- functor(foo(a,b,c),F,N). %true? F = foo, N = 3.
+?- functor(T,foo,3). %T = foo? T = foo(_,_,_).
+?- help(arg). %lotta stuff
+?- arg(3, foo(a,b,c),A). %A=3? A=c.
+?- help('=..'). %lotta stuff
+?- T =.. [foo,x, y, z]. %true? T = foo(x,y,z).
+?- E =.. ['+',2,3], R is E. %E=2+3,R=5? E=2+3,R=5!
+?- foo(who, what) =.. T. %T=[foo, who, what]? T=[foo, who, what]!
+?- foo(who, what) =.. [A, B,C]. %A=foo,B=who,C=what? A=foo,B=who,C=what!
+?- clause(ack(M,0,B),C). %true...? false...
+?- clause(H,(B is 2*0)). %false...? Error: insufficient instantiation...
 */
 
 /* Problem 0C:
@@ -126,13 +126,16 @@ isBinaryTree(tree(L,R)):-
 
 /* Problem 0C Answer: */
 
-/* Problem 0C Test: */
-% :- computeS(-, 19, 7, 12).
-% :- computeS(div, 19, 7, 2).
-% :- computeS(div, 19, 7, R), R = 2.
+computeS(Op, Arg1, Arg2, Result):-
+	functor(Op, Arg1, Arg2), Result = Arg1 Op Arg2.
 
-% :- computeS(/, 19, 7, 2) -> fail ; true.
-% :- catch((computeS(sin, 90, 1, _), fail), error(_Err, _Context), true).
+/* Problem 0C Test: */
+:- computeS(-, 19, 7, 12).
+:- computeS(div, 19, 7, 2).
+:- computeS(div, 19, 7, R), R = 2.
+
+:- computeS(/, 19, 7, 2) -> fail ; true.
+:- catch((computeS(sin, 90, 1, _), fail), error(_Err, _Context), true).
 
 /* Problem 0D (NOT GRADED): */
 
