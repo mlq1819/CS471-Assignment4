@@ -78,14 +78,18 @@ If BT = tree( leaf(1), tree( leaf(2),leaf(4)) ), then isBinaryTree(BT) succeeds.
 */
 /* Problem 0A Answer: */
 
-/* Problem 0A Test: */
-%:- isBinaryTree(leaf(1)).                                           %SUCCEED
-%:- isBinaryTree(tree(leaf(a),leaf(b))).                             %SUCCEED
-%:- BT = tree( leaf(b), tree( leaf(x),leaf(y)) ), isBinaryTree(BT).  %SUCCEED
-%:- BT = tree(tree(leaf(1), leaf(2)), tree(leaf(10), tree(leaf(4), leaf(11)))), isBinaryTree(BT).  %SUCCEED
+isBinaryTree(leaf(_V)).
+isBinaryTree(tree(L,R)):-
+	isBinaryTree(L), isBinaryTree(R).
 
-%:- isBinaryTree( tree(leaf(1)) ).                                   % FAIL
-%:- isBinaryTree( tree() ).                                          % FAIL
+/* Problem 0A Test: */
+:- isBinaryTree(leaf(1)).                                           %SUCCEED
+:- isBinaryTree(tree(leaf(a),leaf(b))).                             %SUCCEED
+:- BT = tree( leaf(b), tree( leaf(x),leaf(y)) ), isBinaryTree(BT).  %SUCCEED
+:- BT = tree(tree(leaf(1), leaf(2)), tree(leaf(10), tree(leaf(4), leaf(11)))), isBinaryTree(BT).  %SUCCEED
+
+:- isBinaryTree( tree(leaf(1)) ).                                   % FAIL
+:- isBinaryTree( tree() ).                                          % FAIL
 
 
 
