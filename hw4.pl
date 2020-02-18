@@ -357,12 +357,12 @@ edge(f,e).
 
 /* Problem 7 Answer */
 
-outgoing(X,[]]).
+outgoing(_,[]).
 outgoing(X,[Yh|Yt]):-
 	edge(X,Yh),
 	outgoing(X,Yt).
 
-incoming(X,[]).
+incoming(_,[]).
 incoming(X,[Yh|Yt]):-
 	edge(Yh,X),
 	incoming(X,Yt).
