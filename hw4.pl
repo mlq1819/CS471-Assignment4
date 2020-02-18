@@ -330,9 +330,6 @@ sumPartialL(N, P, [Lh|Lt]):-
 :- sumPartialL(6, [6, 11, 15, 18, 20, 21]).
 
 
-
-
-
 /* Problem 7:
    We will use a predicate edge(X,Y) to encode a graph.
    edge(X,Y) is true if there is a directed edge from X to Y.
@@ -360,14 +357,24 @@ edge(f,e).
 
 /* Problem 7 Answer */
 
-/* Problem 7 Test */
-% :- outgoing(a,X), X = [b,f,c].
-% :- outgoing(e,X), X = [].
-% :- incoming(a,X), X = [b].
-% :- incoming(f,X), X = [a].
+outgoing(X,[]]).
+outgoing(X,[Yh|Yt]):-
+	edge(X,Yh),
+	outgoing(X,Yt).
 
-% :- outgoing(e,X), X = [a] -> fail ; true.
-% :- incoming(e,X), X = [] -> fail ; true.
+incoming(X,[]).
+incoming(X,[Yh|Yt]):-
+	edge(Yh,X),
+	incoming(X,Yt).
+
+/* Problem 7 Test */
+:- outgoing(a,X), X = [b,f,c].
+:- outgoing(e,X), X = [].
+:- incoming(a,X), X = [b].
+:- incoming(f,X), X = [a].
+
+:- outgoing(e,X), X = [a] -> fail ; true.
+:- incoming(e,X), X = [] -> fail ; true.
 
 
 
