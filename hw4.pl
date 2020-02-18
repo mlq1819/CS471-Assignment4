@@ -516,14 +516,21 @@ t5(T5) :- T5 =  node(5,node(3,node(7,node(1,leaf,leaf),leaf),leaf),node(3,leaf,l
 
 /* Problem 10 Answer: */
 
-d(X,X,1).
-d((C),X,0).
-d((C*X), X, C).
-d((-U),X,(-R)):- d(U,X,R).
-d((U+V),X,Ru+Rv):- d(U,X,Ru), d(V,X,Rv).
-d((U-V),X,Ru-Rv):- d(U,X,Ru), d(V,X,Rv).
-d((U*V),X,U*Rv+V*Ru):- d(V,X,Rv), d(U,X,Ru).
-d((U^N),X,N*U^(N-1)*R):- d(U,X,R).
+d(x,x,1).
+d((_),x,0).
+d((C*X), x, C).
+d((-U),x,(-R)):- d(U,x,R).
+d((U+V),x,Ru+Rv):- d(U,x,Ru), d(V,x,Rv).
+d((U-V),x,Ru-Rv):- d(U,x,Ru), d(V,x,Rv).
+d((U*V),x,U*Rv+V*Ru):- d(V,x,Rv), d(U,x,Ru).
+d((U^N),x,N*U^(N-1)*R):- d(U,x,R).
+
+/*
+		 d(x +2*(x^3 + x*x),x,Result)
+		 d()
+Result = 1+(2*(3*x^ (3-1)*1 +(x*1+x*1))+(x^3+x*x)*0) ; Actual
+Result = 1+(2*(3*x^ 2*1+     (x*1+x*1))+(x^3+x*x)*0) . Expected
+*/
 
 /* Problem 10 Test: */
 
