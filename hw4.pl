@@ -425,12 +425,32 @@ swap(tree(Tl, Tr),tree(Bl, Br)):-
    (https://www.geeksforgeeks.org/binary-search-tree-data-structure/#basic)
 
    helpful if you've forgotten the property of a binary search tree.
-
-   
  */
 
   
 /* Problem 9 Answer: */
+
+
+
+isValid(_,leaf,_).
+isValid(leaf,_,_).
+isValid(Vl, node(Vr,_,_), none):-Vr>Vl.
+isValid(node(Vl,_,_), Vr, none):-Vl=<Vr.
+isValid(Vl, node(Vr,_,_), Vmax):-Vr>Vl, Vr=<Vmax.
+isValid(node(Vl,_,_), Vr, Vmin):-Vl=<Vr, Vl>Vmin.
+isMax(V1, V2, V1):-V1>V2.
+isMax(V1, V2, V2):-V1=<V2.
+isMin(V1, V2, V1):-V1=<V2.
+isMin(V1, V2, V2):-V1>V2.
+isBinarySearchTree(leaf).
+isBinarySearchTree(X):-isBST(X,none,none)
+isBinarySearchTree(node(V,Tl,Tr), Vmin, Vmax):-
+	isValid(Tl, V, Vmin),
+	isValid(V, Tr, Vmax),
+	isMax(V,Vmax,Nmax),
+	isMin(V,Vmin,Nmin),
+	isBinarySearchTree(Tl, Vmin, Nmax),
+	isBinarySearchTree(Tr, Nmin, Vmax).
 
 /* Problem 9 Test: */
 
