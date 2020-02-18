@@ -523,11 +523,11 @@ d((-U),x, -(R)):- d(U,x,R).
 d((U+V),x, Ru + Rv):- d(U,x,Ru), d(V,x,Rv).
 d((U-V),x, Ru - Rv):- d(U,x,Ru), d(V,x,Rv).
 d((U*V),x, U*(Rv) + V*(Ru)):- d(V,x,Rv), d(U,x,Ru).
-d((U^N),x, N*U^(N-1)*(R)):- integer(N), d(U,x,R).
+d((U^N),x, N*U^(Nn)*(R)):- integer(N), Nn is N-1, d(U,x,R).
 
 /*
-Result = 1+(2*(3*x^ (3-1)*1 +(x*1+x*1))+(x^3+x*x)*0) ; Actual
-Result = 1+(2*(3*x^ 2*1+     (x*1+x*1))+(x^3+x*x)*0) . Expected
+Result = 1+(2*(3*x^ (3-1) *1+(x*1+x*1))+(x^3+x*x)*0) ; Actual
+Result = 1+(2*(3*x^   2   *1+(x*1+x*1))+(x^3+x*x)*0) . Expected
 */
 
 /* Problem 10 Test: */
