@@ -285,7 +285,7 @@ sumPartialR(N, SumLst):-
 	Nn is N-1,
 	sumPartialR(Nn, [SLNh|SLNt]),
 	Nh is N+SLNh,
-	SumLst is [Nh|SLNt].
+	SumLst is [Nh,SLNh|SLNt].
 
 /* Problem 5 Test */
 
