@@ -357,15 +357,10 @@ edge(f,e).
 
 /* Problem 7 Answer */
 
-outgoing(_,[]).
-outgoing(X,[Yh|Yt]):-
-	edge(X,Yh),
-	outgoing(X,Yt).
-
-incoming(_,[]).
-incoming(X,[Yh|Yt]):-
-	edge(Yh,X),
-	incoming(X,Yt).
+outgoing(X,Y):-
+	findall(Z, edge(X,Z), Y).
+	
+incoming(_,_).
 
 /* Problem 7 Test */
 :- outgoing(a,X), X = [b,f,c].
