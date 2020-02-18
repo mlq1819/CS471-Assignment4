@@ -438,8 +438,10 @@ isValid(Vl, node(Vr,_,_), none):-Vr>Vl.
 isValid(node(Vl,_,_), Vr, none):-Vl=<Vr.
 isValid(Vl, node(Vr,_,_), Vmax):-Vr>Vl, Vr=<Vmax.
 isValid(node(Vl,_,_), Vr, Vmin):-Vl=<Vr, Vl>Vmin.
+isMax(V, none, V).
 isMax(V1, V2, V1):-V1>V2.
 isMax(V1, V2, V2):-V1=<V2.
+isMin(V, none, V).
 isMin(V1, V2, V1):-V1=<V2.
 isMin(V1, V2, V2):-V1>V2.
 isBinarySearchTree(leaf).
