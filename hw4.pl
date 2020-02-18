@@ -280,12 +280,9 @@ sumlist2([Lh|Lt], PartialSum, Sum):-
 /* Problem 5 Answer */
 
 sumPartialR(1, [1]).
-sumPartialR(N, SumLst):-
+sumPartialR(N, [N+Lh,Lh|Lt]):-
 	N>1,
-	Nn is N-1,
-	sumPartialR(Nn, [SLNh|SLNt]),
-	Nh is N+SLNh,
-	SumLst is [Nh,SLNh|SLNt].
+	sumPartialR(N-1, [Lh|Lt]).
 
 /* Problem 5 Test */
 
