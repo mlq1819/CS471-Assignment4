@@ -252,7 +252,7 @@ sumlist([Lh|Lt],Sum):-
 sumlist2(List,Sum) :- sumlist2(List, 0, Sum).
 sumlist2([], Sum, Sum).
 sumlist2([Lh|Lt], PSum, Sum):-
-	sumlist(Lt, PSum+Lh, Sum).
+	sumlist2(Lt, PSum+Lh, Sum).
 
 /* Problem 4 Test */
 
