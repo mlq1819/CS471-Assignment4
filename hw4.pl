@@ -443,7 +443,7 @@ isMax(V1, V2, V2):-V1=<V2.
 isMin(V1, V2, V1):-V1=<V2.
 isMin(V1, V2, V2):-V1>V2.
 isBinarySearchTree(leaf).
-isBinarySearchTree(X):-isBST(X,none,none)
+isBinarySearchTree(X):-isBinarySearchTree(X,none,none).
 isBinarySearchTree(node(V,Tl,Tr), Vmin, Vmax):-
 	isValid(Tl, V, Vmin),
 	isValid(V, Tr, Vmax),
