@@ -279,13 +279,17 @@ sumlist2([Lh|Lt], PartialSum, Sum):-
 
 /* Problem 5 Answer */
 
+sumPartialR(N, [1]):- N=<1.
+sumPartialR(N, SumLst):-
+	sumPartialR(N-1, [SLNH|SLNT]),
+	SumLst is [N+SLNH|SLNT].
 
 /* Problem 5 Test */
 
-% :- sumPartialR(1, [1]).
-% :- sumPartialR(1, []) -> fail ; true.
-% :- sumPartialR(2, [3, 1]).
-% :- sumPartialR(6, [21, 15, 10, 6, 3, 1]).
+:- sumPartialR(1, [1]).
+:- sumPartialR(1, []) -> fail ; true.
+:- sumPartialR(2, [3, 1]).
+:- sumPartialR(6, [21, 15, 10, 6, 3, 1]).
 
 
 
