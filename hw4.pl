@@ -432,12 +432,12 @@ swap(tree(Tl, Tr),tree(Bl, Br)):-
 
 isValid(_,leaf).
 isValid(leaf,_).
-isValid(_,leaf,_).
-isValid(leaf,_,_).
 isValid(Vl, node(Vr,_,_)):-
 	Vr>Vl.
 isValid(node(Vl,_,_), Vr):-
 	Vl=<Vr.
+isValid(_,leaf,_).
+isValid(leaf,_,_).
 isValid(Vl, node(Vr,_,_), Vmax):-
 	Vr>Vl, Vr=<Vmax.
 isValid(node(Vl,_,_), Vr, Vmin):-
