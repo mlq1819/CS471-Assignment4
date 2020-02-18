@@ -315,7 +315,7 @@ sumPartialR(N, [Lhh,Lh|Lt]):-
 
 /* Problem 6 Answer */
 
-sumPartial:(N, L):-sumPartialL(N, 0, L).
+sumPartialL(N, L):-sumPartialL(N, 0, L).
 sumPartialL(0, _, []).
 sumPartialL(N, P, [Lh|Lt]):-
 	N>0,
