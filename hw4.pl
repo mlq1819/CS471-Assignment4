@@ -448,7 +448,8 @@ isMin(V1, V2, V1):-number(V2), V1=<V2.
 isMin(V1, V2, V2):-number(V2), V1>V2.
 isBinarySearchTree(leaf).
 isBinarySearchTree(leaf,_,_).
-isBinarySearchTree(node(V,Tl,Tr)):-isBinarySearchTree(node(V,Tl,Tr,none,none).
+isBinarySearchTree(node(V,Tl,Tr)):-
+	isBinarySearchTree(node(V,Tl,Tr),none,none).
 isBinarySearchTree(node(V,Tl,Tr), none, none):-
 	isValid(Tl, V),
 	isValid(V, Tr),
