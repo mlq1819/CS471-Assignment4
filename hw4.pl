@@ -251,13 +251,15 @@ sumlist([Lh|Lt],Sum):-
 
 sumlist2(List,Sum) :- sumlist2(List, 0, Sum).
 sumlist2([], Sum, Sum).
+sumlist2([Lh|Lt], PSum, Sum):-
+	sumlist(Lt, PSum+Lh, Sum).
 
 /* Problem 4 Test */
 
-% :- sumlist2([], 0).
-% :- sumlist2([], 1) -> fail ; true.
-% :- sumlist2([1,2,3,4], 10).
-% :- sumlist2([1], 1).
+:- sumlist2([], 0).
+:- sumlist2([], 1) -> fail ; true.
+:- sumlist2([1,2,3,4], 10).
+:- sumlist2([1], 1).
 
 /* Problem 5:
    Write the predicate sumPartialR(N, SumLst), which succeeds as follows:
