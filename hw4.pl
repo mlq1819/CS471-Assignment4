@@ -315,12 +315,19 @@ sumPartialR(N, [Lhh,Lh|Lt]):-
 
 /* Problem 6 Answer */
 
+sumPartial:(N, L):-sumPartialL(N, 0, L).
+sumPartialL(0, _, []).
+sumPartialL(N, P, [Lh|Lt]):-
+	N>0,
+	Nn is N-1,
+	Lh is N + P,
+	sumPartialL(Nn, Lh, Lt).
 
 /* Problem 6 Test */
 
-% :- sumPartialL(1, [1]).
-% :- sumPartialL(1, []) -> fail ; true.
-% :- sumPartialL(6, [6, 11, 15, 18, 20, 21]).
+:- sumPartialL(1, [1]).
+:- sumPartialL(1, []) -> fail ; true.
+:- sumPartialL(6, [6, 11, 15, 18, 20, 21]).
 
 
 
