@@ -281,6 +281,7 @@ sumlist2([Lh|Lt], PartialSum, Sum):-
 
 sumPartialR(1, [1]).
 sumPartialR(N, SumLst):-
+	N>1,
 	Nn is N-1,
 	sumPartialR(Nn, [SLNh|SLNt]),
 	Nh is N+SLNh,
