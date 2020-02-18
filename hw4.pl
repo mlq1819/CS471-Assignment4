@@ -518,7 +518,7 @@ t5(T5) :- T5 =  node(5,node(3,node(7,node(1,leaf,leaf),leaf),leaf),node(3,leaf,l
 
 d(x,x,1).
 d((_),x,0).
-d((C*X), x, C):-number(C).
+d((C*x), x, C):-number(C).
 d((-U),x,(-R)):- d(U,x,R).
 d((U+V),x,Ru+Rv):- d(U,x,Ru), d(V,x,Rv).
 d((U-V),x,Ru-Rv):- d(U,x,Ru), d(V,x,Rv).
