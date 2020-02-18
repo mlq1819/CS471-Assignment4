@@ -279,7 +279,7 @@ sumlist2([Lh|Lt], PartialSum, Sum):-
 
 /* Problem 5 Answer */
 
-sumPartialR(N, [1]):- N=<1.
+sumPartialR(1, [1]).
 sumPartialR(N, SumLst):-
 	Nn is N-1,
 	sumPartialR(Nn, [SLNh|SLNt]),
