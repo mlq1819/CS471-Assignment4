@@ -516,16 +516,25 @@ t5(T5) :- T5 =  node(5,node(3,node(7,node(1,leaf,leaf),leaf),leaf),node(3,leaf,l
 
 /* Problem 10 Answer: */
 
+d(X,X,1).
+d((C),X,0).
+d((C*X), X, C).
+d((-U),X,(-R)):- d(U,X,R).
+d((U+V),X,Ru+Rv):- d(U,X,Ru), d(V,X,Rv).
+d((U-V),X,Ru-Rv):- d(U,X,Ru), d(V,X,Rv).
+d((U*V),X,U*Rv+V*Ru):- d(V,X,Rv), d(U,X,Ru).
+d((U^N),X,N*U^(N-1)*R):- d(U,X,R).
+
 /* Problem 10 Test: */
 
-% :- d(x,x,R), R = 1 .
-% :- d(7*x,x,R), R = 7 .
-% :- d(x +2*(x^3 + x*x),x,Result), Result = 1+ (2* (3*x^2*1+ (x*1+x*1))+ (x^3+x*x)*0) .
-% :- d(-(1.24*x -x^3),x,Result), Result = - (1.24-3*x^2*1) .
-% :- d(-(1.24*x -2*x^3),x,Result), Result = - (1.24- (2* (3*x^2*1)+x^3*0)) .
+:- d(x,x,R), R = 1 .
+:- d(7*x,x,R), R = 7 .
+:- d(x +2*(x^3 + x*x),x,Result), Result = 1+ (2* (3*x^2*1+ (x*1+x*1))+ (x^3+x*x)*0) .
+:- d(-(1.24*x -x^3),x,Result), Result = - (1.24-3*x^2*1) .
+:- d(-(1.24*x -2*x^3),x,Result), Result = - (1.24- (2* (3*x^2*1)+x^3*0)) .
 
 % Pay careful attention to why this fails.
-% :- d(x +2*(x^3 + x*x),x,Result), Result = 1+ (2* (3*x^(3-1)*1+ (x*1+x*1))+ (x^3+x*x)*0) -> fail ; true.
+:- d(x +2*(x^3 + x*x),x,Result), Result = 1+ (2* (3*x^(3-1)*1+ (x*1+x*1))+ (x^3+x*x)*0) -> fail ; true.
 
 
 
