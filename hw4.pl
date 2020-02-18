@@ -360,7 +360,8 @@ edge(f,e).
 outgoing(X,Y):-
 	findall(Z, edge(X,Z), Y).
 	
-incoming(_,_).
+incoming(X,Y):-
+	findall(Z, edge(Z,X), Y).
 
 /* Problem 7 Test */
 :- outgoing(a,X), X = [b,f,c].
