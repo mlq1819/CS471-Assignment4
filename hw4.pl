@@ -519,11 +519,11 @@ t5(T5) :- T5 =  node(5,node(3,node(7,node(1,leaf,leaf),leaf),leaf),node(3,leaf,l
 d(x,x,1).
 d((_),x,0).
 d((C*x), x, C):-number(C).
-d((-U),x,(-R)):- d(U,x,R).
-d((U+V),x,Ru+Rv):- d(U,x,Ru), d(V,x,Rv).
-d((U-V),x,Ru-Rv):- d(U,x,Ru), d(V,x,Rv).
-d((U*V),x,U*Rv+V*Ru):- d(V,x,Rv), d(U,x,Ru).
-d((U^N),x,N*U^(N-1)*R):- integer(N), d(U,x,R).
+d((-U),x, -(R)):- d(U,x,R).
+d((U+V),x, Ru + Rv):- d(U,x,Ru), d(V,x,Rv).
+d((U-V),x, Ru - Rv):- d(U,x,Ru), d(V,x,Rv).
+d((U*V),x, U*(Rv) + V*(Ru)):- d(V,x,Rv), d(U,x,Ru).
+d((U^N),x, N*U^(N-1)*(R)):- integer(N), d(U,x,R).
 
 /*
 Result = 1+(2*(3*x^ (3-1)*1 +(x*1+x*1))+(x^3+x*x)*0) ; Actual
