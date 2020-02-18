@@ -430,6 +430,8 @@ swap(tree(Tl, Tr),tree(Bl, Br)):-
   
 /* Problem 9 Answer: */
 
+isValid(_,leaf).
+isValid(leaf,_).
 isValid(_,leaf,_).
 isValid(leaf,_,_).
 isValid(Vl, node(Vr,_,_)):-
