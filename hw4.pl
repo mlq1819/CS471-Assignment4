@@ -436,14 +436,14 @@ isValid(_,leaf,_).
 isValid(leaf,_,_).
 isValid(Vl, node(Vr,_,_), none):-Vr>Vl.
 isValid(node(Vl,_,_), Vr, none):-Vl=<Vr.
-isValid(Vl, node(Vr,_,_), Vmax):-Vr>Vl, Vr=<Vmax.
-isValid(node(Vl,_,_), Vr, Vmin):-Vl=<Vr, Vl>Vmin.
+isValid(Vl, node(Vr,_,_), Vmax):-number(Vmax), Vr>Vl, Vr=<Vmax.
+isValid(node(Vl,_,_), Vr, Vmin):-number(Vmin), Vl=<Vr, Vl>Vmin.
 isMax(V, none, V).
-isMax(V1, V2, V1):-V1>V2.
-isMax(V1, V2, V2):-V1=<V2.
+isMax(V1, V2, V1):-number(V2), V1>V2.
+isMax(V1, V2, V2):-number(V2), V1=<V2.
 isMin(V, none, V).
-isMin(V1, V2, V1):-V1=<V2.
-isMin(V1, V2, V2):-V1>V2.
+isMin(V1, V2, V1):-number(V2), V1=<V2.
+isMin(V1, V2, V2):-number(V2), V1>V2.
 isBinarySearchTree(leaf).
 isBinarySearchTree(X):-isBinarySearchTree(X,none,none).
 isBinarySearchTree(node(V,Tl,Tr), Vmin, Vmax):-
