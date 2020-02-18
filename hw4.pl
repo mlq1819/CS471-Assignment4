@@ -430,23 +430,40 @@ swap(tree(Tl, Tr),tree(Bl, Br)):-
   
 /* Problem 9 Answer: */
 
-
-
 isValid(_,leaf,_).
 isValid(leaf,_,_).
-isValid(Vl, node(Vr,_,_), none):-Vr>Vl.
-isValid(node(Vl,_,_), Vr, none):-Vl=<Vr.
-isValid(Vl, node(Vr,_,_), Vmax):-number(Vmax), Vr>Vl, Vr=<Vmax.
-isValid(node(Vl,_,_), Vr, Vmin):-number(Vmin), Vl=<Vr, Vl>Vmin.
-isMax(V, none, V).
+isValid(Vl, node(Vr,_,_)):-Vr>Vl.
+isValid(node(Vl,_,_), Vr):-Vl=<Vr.
+isValid(Vl, node(Vr,_,_), Vmax):-Vr>Vl, Vr=<Vmax.
+isValid(node(Vl,_,_), Vr, Vmin):-Vl=<Vr, Vl>Vmin.
 isMax(V1, V2, V1):-number(V2), V1>V2.
 isMax(V1, V2, V2):-number(V2), V1=<V2.
-isMin(V, none, V).
 isMin(V1, V2, V1):-number(V2), V1=<V2.
 isMin(V1, V2, V2):-number(V2), V1>V2.
 isBinarySearchTree(leaf).
 isBinarySearchTree(X):-isBinarySearchTree(X,none,none).
+isBinarySearchTree(node(V,Tl,Tr), none, none):-
+	isValid(Tl, V),
+	isValid(V, Tr),
+	isBinarySearchTree(Tl, none, V),
+	isBinarySearchTree(Tr, V, none).
+isBinarySearchTree(node(V,Tl,Tr), Vmin, none):-
+	number(Vmin),
+	isValid(Tl, V, Vmin),
+	isValid(V, Tr),
+	isMin(V,Vmin,Nmin),
+	isBinarySearchTree(Tl, Vmin, V),
+	isBinarySearchTree(Tr, Nmin, none).
+isBinarySearchTree(node(V,Tl,Tr), none, Vmax):-
+	number(Vmax),
+	isValid(Tl, V),
+	isValid(V, Tr, Vmax),
+	isMax(V,Vmax,Nmax),
+	isBinarySearchTree(Tl, none, Nmax),
+	isBinarySearchTree(Tr, V, Vmax).
 isBinarySearchTree(node(V,Tl,Tr), Vmin, Vmax):-
+	number(Vmin),
+	number(Vmax),
 	isValid(Tl, V, Vmin),
 	isValid(V, Tr, Vmax),
 	isMax(V,Vmax,Nmax),
