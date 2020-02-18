@@ -397,11 +397,14 @@ incoming(X,Y):-
 
 /* Problem 8 Answer: */
 
+swap(leaf(X), leaf(X)).
+swap(tree(Tl, Tr),tree(Bl, Br)):-
+	swap(Tl, Br), swap(Tr, Bl).
 
 /* Problem 8 Test: */
-% :- swap( tree( tree(leaf(1), leaf(2)), leaf(4)), T), T  =  tree( leaf(4), tree(leaf(2), leaf(1))).
-% :- swap(leaf(1), leaf(1)).
-% :- swap(tree(leaf(1), leaf(2)), tree(leaf(1), leaf(2))) -> fail ; true.
+:- swap( tree( tree(leaf(1), leaf(2)), leaf(4)), T), T  =  tree( leaf(4), tree(leaf(2), leaf(1))).
+:- swap(leaf(1), leaf(1)).
+:- swap(tree(leaf(1), leaf(2)), tree(leaf(1), leaf(2))) -> fail ; true.
 
 
 /* Problem 9:
